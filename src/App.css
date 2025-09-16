@@ -1,0 +1,252 @@
+body {
+  width: 100%;
+  line-height: 1.6;
+  color: #fff;
+  background: #000;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body.stop {
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 99999;
+  transition: top 0.3s ease-in-out;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 200px;
+  z-index: 9;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  display: block;
+  padding: 10px 20px;
+  line-height: 1;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+  transition: 0.3s all cubic-bezier(0.075, 0.82, 0.165, 1) 0.6s;
+}
+
+nav button {
+  -webkit-appearance: none;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: absolute;
+  z-index: 99;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  transition: 0.3s all cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
+}
+
+nav button span {
+  width: 40%;
+  background: #fff;
+  height: 2px;
+  display: block;
+  margin: 5px auto;
+  transform: scaleX(0);
+  transition: 0.6s transform cubic-bezier(0.075, 0.82, 0.165, 1),
+    0.3s margin ease-in;
+}
+
+nav button:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+nav button:hover span {
+  margin: 10px auto;
+}
+
+/* Sticky Header State */
+.header.sticky {
+  top: -100px;
+}
+
+.header.sticky nav {
+  width: 90px;
+  height: 90px;
+  transition-delay: 0.5s;
+}
+
+.header.sticky nav button {
+  transform: translate(-50%, -50%) scale(1);
+  transition-delay: 0.6s;
+}
+
+.header.sticky nav button span {
+  transform: scaleX(1);
+  transition: 0.6s transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s,
+    0.3s margin ease-in;
+}
+
+.header.sticky nav a {
+  opacity: 0;
+  letter-spacing: 0px;
+  transform: scale(0.3);
+  transition-delay: 0.2s;
+}
+
+/* Page */
+.page {
+  position: relative;
+  padding-top: 100px;
+  transition: 1s all ease-in-out;
+}
+
+.page.menuopen {
+  opacity: 0.6;
+  filter: blur(20px);
+  transform: scale(1.2);
+}
+
+/* Sections */
+section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: relative;
+  animation: fadeIn 2s ease-in-out;
+  text-align: center;
+}
+
+section h1 {
+  font-size: 80px;
+  margin: 0;
+  z-index: 2;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Section Backgrounds */
+#about {
+  background: #111;
+}
+
+#projects {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+#contact {
+  background: linear-gradient(135deg, #42275a, #734b6d);
+}
+
+#stack {
+  background: linear-gradient(135deg, #134e5e, #71b280);
+}
+
+#achievements {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+}
+
+/* About Section */
+.aboutme .opaque-bg {
+  text-align: center;
+}
+
+.blinking-cursor {
+  font-weight: 100;
+  font-size: 24px;
+  color: #fff;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-8px);
+  }
+}
+
+.animated.fadeInDown {
+  animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
