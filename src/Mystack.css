@@ -1,0 +1,158 @@
+/*
+ * Centered Cards with Full-Width Section
+ * This CSS ensures that if there are only a few cards, they remain centered
+ * and don't stretch to fill the entire grid, providing a more balanced layout.
+ */
+
+.techstack-section-unique {
+    padding: 80px 20px;
+    background: transparent; /* dark gradient background */
+    color: white;
+    position: relative;
+    overflow: hidden;
+    /* Removed width: 100% as it's the default behavior of a block element */
+}
+
+/* Subtle glowing orb background effect */
+.techstack-section-unique::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 1000px;
+    background: radial-gradient(circle, rgba(142, 21, 239, 0.15) 0%, transparent 70%);
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: subtleRotate 45s linear infinite;
+    z-index: 0;
+}
+
+@keyframes subtleRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.techstack-container-unique {
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    z-index: 1; /* Ensure content is on top of the background effect */
+    padding: 0 20px; /* Consistent padding */
+}
+
+.techstack-header-unique {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.techstack-header-unique h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #a770ef, #cf71af, #ff6e7f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.techstack-accent-unique {
+    color: #a770ef;
+    background: none;
+    -webkit-text-fill-color: initial;
+}
+
+.techstack-header-unique p {
+    color: #6a737d;
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 10px auto 0;
+    line-height: 1.6;
+}
+
+.techstack-categories-unique {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.techstack-categories-unique button {
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: 1px solid #2f363d;
+    background: transparent;
+    color: #8b949e;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.techstack-active-unique,
+.techstack-categories-unique button:hover {
+    background: linear-gradient(45deg, #a770ef, #cf71af);
+    border-color: transparent;
+    color: #fff;
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 5px 15px rgba(167, 112, 239, 0.2);
+}
+
+.techstack-grid-unique {
+    display: flex; /* Main change: Use flexbox for the grid container */
+    flex-wrap: wrap;
+    justify-content: center; /* This is the key to centering the cards */
+    gap: 30px;
+}
+
+.techstack-card-unique {
+    flex: 0 0 280px; 
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #2f363d;
+    border-radius: 12px;
+    padding: 30px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.techstack-card-unique:hover {
+    transform: translateY(-8px);
+    border-color: #8b949e;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 40px rgba(167, 112, 239, 0.1);
+}
+
+.techstack-card-header-unique {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.techstack-card-header-unique h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #c9d1d9;
+}
+
+.techstack-badge-unique {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(45deg, #a770ef, #cf71af);
+}
+
+.techstack-card-unique p {
+    margin: 15px 0;
+    color: #6a737d;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.techstack-experience-unique {
+    font-size: 0.85rem;
+    color: #484f58;
+    font-style: italic;
+    margin-top: 10px;
+}

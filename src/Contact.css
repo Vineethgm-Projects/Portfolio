@@ -1,0 +1,376 @@
+/* === Import Fonts === */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&family=Lato:wght@400;700&family=Mukta:wght@700&family=Montserrat:wght@400;700&display=swap');
+
+/* === Base Styles === */
+.contact-section-root {
+  width: 100%;
+  padding-bottom: 100px;
+}
+
+.contact-section-header {
+  text-align: center;
+  margin: 0 auto;
+  padding: 40px 0;
+  font: 300 60px 'Oswald', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ------------------------------------------- */
+/* === CTA BUTTON STYLES (Front Face) === */
+/* ------------------------------------------- */
+.contact-button-container {
+  padding: 0;
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Base button style - adjusted purple to dark blue/purple */
+.cta {
+  position: relative;
+  margin: 0;
+  padding: 11.5px 18px;
+  transition: all 0.2s ease;
+  border: 3px solid #3d2a70; 
+  background: #3d2a70; 
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Animated white overlay/dot */
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  border-radius: 50px;
+  background: #e5baba;
+  width: 45px;
+  height: 45px;
+  transition: all 0.8s ease;
+  z-index: 0;
+}
+
+/* Text style */
+.cta span {
+  position: relative;
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+/* SVG Arrow style */
+.cta svg {
+  position: relative;
+  top: 1px;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: white;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+/* Hover effect: fill the button with a dark color */
+.cta:hover:before {
+  width: 100%;
+  background: #1c1c1c; 
+}
+
+/* Hover effect: slide arrow */
+.cta:hover svg {
+  transform: translateX(0);
+  transition: all 0.5s ease;
+}
+
+/* Active (click) effect */
+.cta:active {
+  transform: scale(0.95);
+}
+
+
+/* ------------------------------------------- */
+/* === 3D FLIP CARD STRUCTURE & ANIMATION === */
+/* ------------------------------------------- */
+
+/* The Scene container remains the same, providing the 3D perspective */
+.contact-scene {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The element that holds both faces and handles the rotation */
+.contact-flip-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* The class applied by React to trigger the flip */
+.contact-flip-container.flipped {
+  transform: rotateY(180deg);
+}
+
+/* The base face styles */
+.contact-card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-sizing: border-box;
+}
+
+/* The shared card appearance is applied ONLY to the back face via .contact-card-back */
+.contact-card-back {
+  background: radial-gradient(circle at top left, #1c1c1c, #1a1a1a);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(100, 180, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: rotateY(180deg);
+  display: block;
+  padding-top: 20px;
+}
+
+/* Front Face Styling */
+.contact-card-front {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  transform: rotateY(0deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* ------------------------------------------- */
+/* === Form and Icon Styles === */
+/* ------------------------------------------- */
+
+.contact-wrapper {
+  display: block;
+  padding: 0;
+  max-width: 100%;
+  margin: 0;
+}
+
+.contact-form-horizontal {
+  max-width: 100%;
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+}
+
+.contact-form-group,
+.contact-col-sm-12 {
+  width: 100%;
+}
+
+.contact-form-control,
+.contact-textarea {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  letter-spacing: 1px;
+  width: 100%;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  border: 1px solid #444;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form-control:focus,
+.contact-textarea:focus {
+  border-color: #0099ff;
+  box-shadow: 0 0 8px rgba(0, 153, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  outline: none;
+}
+
+
+/* ------------------------------------------- */
+/* === NEW SEND BUTTON STYLES === */
+/* ------------------------------------------- */
+
+.contact-send-button {
+  /* Base Style */
+  background-color: #ffffff;
+  color: #000000; /* Text color is now black */
+  border-radius: 9999px; /* Replaces 10em for max roundness */
+  font-size: 17px;
+  font-weight: 600;
+  padding: 1em 2em; /* Set padding directly on the button */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #000000; /* Made border 2px to match shadow thickness */
+  box-shadow: 0 0 0 0 #000000;
+  width: auto; /* Allow button to fit content based on padding */
+  max-width: 100%;
+  height: auto;
+  align-self: center; /* Center the button in the form's flex column */
+  display: flex; /* Flex container for content */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hover Style */
+.contact-send-button:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 4px 6px 0 0 #000000;
+}
+
+/* Active Style */
+.contact-send-button:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 #000000;
+}
+
+/* Inner Container for Icon/Text (Simplified) */
+.contact-alt-send-button {
+  /* Removed height/transform logic */
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000; /* Ensure icon color is black */
+  transition: none; /* Remove previous transition */
+}
+
+/* Text inside the button */
+.contact-send-text {
+  font: 700 17px 'Montserrat', sans-serif; /* Adjusted to Montserrat and 17px */
+  letter-spacing: 0.05em; /* Adjusted to match CTA button */
+  margin-left: 8px;
+  text-transform: uppercase;
+  color: #000000; /* Ensure text is black */
+}
+
+/* Remove old hover logic */
+.contact-send-button:hover .contact-alt-send-button {
+  transform: none;
+}
+
+
+/* ------------------------------------------- */
+/* === Social Media Icons === */
+/* ------------------------------------------- */
+.contact-social-media-container {
+  max-width: 100%;
+  margin: 30px auto 0;
+  padding: 0;
+  text-align: center;
+}
+
+.contact-social-media-list {
+  font-size: 22px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-social-media-list li {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin: 8px 6px;
+  line-height: 50px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #282828;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.contact-social-media-list li a {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.contact-social-media-list li:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 0 1px #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-social-media-list li:hover {
+  background-color: #007bff;
+}
+
+.contact-social-media-list li:hover:after {
+  opacity: 1;
+  transform: scale(1.1);
+  transition-timing-function: cubic-bezier(0.37, 0.74, 0.15, 1.65);
+}
+
+.contact-social-media-list li:hover a {
+  color: #fff;
+  transform: scale(1.btn-1);
+}
+
+/* === Responsive === */
+@media screen and (max-width: 850px) {
+  .contact-scene {
+    max-width: 90%;
+  }
+  .contact-card-face {
+    padding: 30px 20px;
+  }
+}
+
+@media screen and (max-width: 569px) {
+  .contact-scene {
+    height: 450px;
+  }
+  .contact-card-face {
+    padding: 20px 15px;
+  }
+  .contact-social-media-list li {
+    height: 45px;
+    width: 45px;
+    line-height: 45px;
+    font-size: 1.8rem;
+  }
+  .contact-social-media-list li:after {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+  }
+}
