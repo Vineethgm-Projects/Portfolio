@@ -14,7 +14,7 @@
 }
 
 /* Subtle glowing orb background effect */
-.techstack-section-unique::before {
+/* .techstack-section-unique::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -25,7 +25,7 @@
     transform: translate(-50%, -50%) rotate(0deg);
     animation: subtleRotate 45s linear infinite;
     z-index: 0;
-}
+} */
 
 @keyframes subtleRotate {
     from { transform: translate(-50%, -50%) rotate(0deg); }
@@ -46,8 +46,8 @@
 }
 
 .techstack-header-unique h2 {
-    font-size: 3rem;
-    font-weight: 800;
+    font: 300 60px 'Oswald', sans-serif;
+    font-weight: 500;
     background: linear-gradient(45deg, #a770ef, #cf71af, #ff6e7f);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -90,7 +90,7 @@
 
 .techstack-active-unique,
 .techstack-categories-unique button:hover {
-    background: linear-gradient(45deg, #a770ef, #cf71af);
+    background: #a770ef;
     border-color: transparent;
     color: #fff;
     transform: scale(1.05) translateY(-2px);
@@ -155,4 +155,19 @@
     color: #484f58;
     font-style: italic;
     margin-top: 10px;
+}
+
+
+
+/* Optional glow effect when hovered */
+/* .techstack-card-unique:hover {
+  box-shadow: 0 0 10px #03e9f4, 0 0 20px #03e9f4, 0 0 40px #03e9f4;
+  border-color: #03e9f4;
+} */
+
+
+.techstack-card-unique:hover {
+    /* Changed cyan (#03e9f4) to the desired purple (#a770ef) */
+    box-shadow: 0 0 10px #a770ef, 0 0 20px #a770ef, 0 0 40px #a770ef;
+    border-color: #a770ef;
 }

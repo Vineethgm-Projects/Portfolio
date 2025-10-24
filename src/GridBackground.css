@@ -1,0 +1,11 @@
+#gridCanvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: block;
+  background-color: #000; /* pure black background */
+  filter: blur(3.5px); /* adjust the value as needed */
+}

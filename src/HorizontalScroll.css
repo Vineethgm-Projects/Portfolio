@@ -1,325 +1,477 @@
-/* Projects Container and Detail View Styles */
-.projects-container {
- display: flex;
- flex-direction: row;
- justify-content: center;
- align-items: center;
- flex-wrap: wrap;
- gap: 45px;
- transition: all 0.6s ease-in-out;
+/* --- HorizontalScroll.css --- */
+
+/* --- Global Reset (Conceptual - should be in a global CSS file) --- */
+/*
+.main-container-carousel * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+*/
 
-.hover-text {
-  color: #fff; /* white text */
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-  font-weight: 550;
+/* --- Component Base Layout --- */
+.main-container-carousel {
+  /* Mimic the body styles that ensure centering and background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
 }
-
-.hover-text strong {
-  color: #9858ea; /* golden bold line */
-  font-weight: 900;
-}
-
-
 
 .projectheading {
-  padding-bottom: 80px;
+  text-align: center;
+  margin-bottom: 60px;
+  color: #a770ef; /* Theme color */
+  font-size: 3rem;
 }
 
-.projects-container.show-details-view {
- gap: 40px;
- justify-content: center;
- flex-wrap: nowrap;
-} 
-
-.card-wrap.vanish {
- opacity: 0;
- pointer-events: none;
- transform: scale(0.8);
- transition: all 0.6s ease-in-out;
-}
-
-.card-wrap.selected-card-wrap {
- width: 400px;
- height: 500px;
- transition: all 0.6s ease-in-out;
-}
-
-.card-details-wrapper {
-  transition: transform 0.6s ease-in-out;
-}
-
-.projects-container.show-details-view .card-details-wrapper {
-  transform: translateX(-200px);
-}
-
-.card-details {
- display: flex;
- flex-direction: column;
- margin-top: -100px;
- padding: 0px;/*changes made*/
- max-width: 600px;
- color: #fff;
- opacity: 0;
- transform: translateX(30px);
- animation: slideIn 0.8s forwards 0.3s;
-}
-
-.card-details h2 {
- font-size: 3rem;
- font-weight: bold;
- margin-bottom: 20px;
- color: #a770ef;
-}
-
-.card-details p {
-  width: 500px;
- font-size: 1.2rem;
- line-height: 1.6;
- color: #c9d1d9;
-}
-
-.back-btn {
- margin-top: 30px;
- padding: 12px 24px;
- border-radius: 50px;
- border: 1px solid #c9d1d9;
- background: transparent;
- color: #c9d1d9;
- cursor: pointer;
- font-size: 1rem;
- font-weight: 600;
- transition: all 0.3s ease;
-}
-
-.back-btn:hover {
- background: #c9d1d9;
- color: #111111;
- transform: translateY(-2px);
- box-shadow: 0 5px 15px rgba(201, 209, 217, 0.2);
-}
-
-@keyframes slideIn {
- to {
-  opacity: 1;
-  transform: translateX(0);
- }
-}
-
-/* Projects Card Layout */
-#projects .container {
- display: flex;
- flex-direction: row;
- justify-content: center;
- align-items: center;
- flex-wrap: wrap;
- gap: 20px;
-}
-
-.card-wrap {
- width: 300px;
- height: 400px;
- perspective: 1000px;
-}
-
-.card {
- width: 100%;
- height: 100%;
- border-radius: 20px;
- overflow: hidden;
- position: relative;
- transform-style: preserve-3d;
- transition: transform 0.2s ease;
-}
-
-.card-bg {
- position: absolute;
- top: 0;
- left: 0;
- width: 100%;
- height: 100%;
- background-size: cover;
- background-position: center;
- background-repeat: no-repeat;
- z-index: 1;
-}
-
-.card-info {
- position: absolute;
- bottom: 20px;
- left: 20px;
- z-index: 2;
- color: #fff;
-}
-
-/* Card Overwrite/Refinement Styles */
-#projects .container {
- display: flex;
- flex-direction: row;
- justify-content: center;
- align-items: center;
- flex-wrap: wrap;
- gap: 90px;
-}
-
-.container {
- display: flex;
- flex-wrap: wrap;
- justify-content: center;
- gap: 40px;
- padding: 40px 20px;
-}
-
-.card-wrap {
- perspective: 800px;
- cursor: pointer;
-}
-
-.card {
- width: 300px;
- height: 400px;
- border-radius: 15px;
- overflow: hidden;
- position: relative;
- transform-style: preserve-3d;
- background-color: #333;
- box-shadow: 0 30px 60px rgba(0, 0, 0, 0.66),
-   inset #333 0 0 0 5px,
-   inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
- transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-}
-
-.card-bg {
- position: absolute;
- top: 0px;
- left: 0px;
- width: 100%;
- height: 100%;
- background-size: cover;
- background-position: center;
- background-repeat: no-repeat;
- opacity: 0.5;
- transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95),
- opacity 0.2s;
-}
-
-.card-info {
- position: absolute;
- bottom: 0;
- width: 100%;
- padding: 5px;
- color: #fff;
- transform: translateY(40%);
- transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.card-info p {
- opacity: 0;
- transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.card-wrap:hover .card-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+.content-wrapper {
+  display: flex;
   width: 100%;
+  max-width: 1200px;
+  height: 80vh;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Carousel Section (Left) --- */
+.carousel-section-new {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-container-new {
+  width: 100%;
+  max-width: 500px;
+  height: 70vh;
+  position: relative;
+  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Carousel Nudge: Set to -100px as requested */
+  margin-top: -150px; 
+}
+
+/* Hide arrows in the carousel container for desktop, but show on mobile via media query */
+.carousel-container-new > .nav-arrow {
+  display: none;
+}
+
+.carousel-track-new {
+  width: 450px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* dark overlay */
-  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-new {
+  position: absolute;
+  width: 400px;
+  height: 225px;
+  background-color: #2c2c2c; /* Dark card background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Darker shadow for black background */
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+/* --- Card Positions --- */
+.card-new.center {
+  z-index: 10;
+  transform: scale(1.1) translateZ(0);
+  filter: none;
+  border: 5px solid #ffffff;
+}
+
+.card-new.up-2 {
+  z-index: 1;
+  transform: translateY(-300px) scale(0.8) translateZ(-300px);
+  opacity: 0.5; /* Reduced opacity for dark background */
+  filter: grayscale(100%);
+}
+
+.card-new.up-1 {
+  z-index: 5;
+  transform: translateY(-150px) scale(0.9) translateZ(-100px);
+  opacity: 0.7; /* Reduced opacity for dark background */
+  filter: grayscale(100%);
+}
+
+.card-new.down-1 {
+  z-index: 5;
+  transform: translateY(150px) scale(0.9) translateZ(-100px);
+  opacity: 0.7; /* Reduced opacity for dark background */
+  filter: grayscale(100%);
+}
+
+.card-new.down-2 {
+  z-index: 1;
+  transform: translateY(300px) scale(0.8) translateZ(-300px);
+  opacity: 0.5; /* Reduced opacity for dark background */
+  filter: grayscale(100%);
+}
+
+.card-new.hidden {
+  opacity: 0;
   pointer-events: none;
 }
 
-
-.card-wrap:hover .card-info {
- transform: translateY(0);
-}
-
-.card-wrap:hover .card-info p {
- padding-right: 40px;
- opacity: 1;
-}
-
-.card-wrap:hover .card-bg {
- opacity: 0.8;
- filter: blur(40px);
-}
-
-/* ------------------------------------------------------ */
-/* Progressive Left Movement for Selected Cards          */
-/* ------------------------------------------------------ */
-.card-wrapper-outer {
-  transition: transform 0.6s ease-in-out;
-}
-
-.move-little-left {
-  transform: translateX(+300px);
-}
-
-.move-more-left {
-  transform: translateX(-50px);
-}
-
-.move-most-left {
-  transform: translateX(-350px);
-}
-
-/* --- Add this CSS --- */
-
-/* Hover Button Styling */
-.hover-button {
+/* --- Controls Section (Right) --- */
+.controls-section-new {
+  flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-top: 10px;
+  align-items: flex-start;
+  gap: 40px;
+  padding-left: 40px;
 }
 
-/* Button styles */
-.btn {
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 45px;
-  max-width: 160px;
+.member-info-new {
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+}
+
+.member-info-new.fade-out {
+  opacity: 0;
+}
+
+.member-name-new {
+  color: #a770ef; /* Theme color */
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
   position: relative;
-  text-decoration: none;
-  text-transform: uppercase;
-  width: 100%;
-}
-
-.btn-1 {
-  padding-bottom: 20px;
-  background:transparent;
-  font-weight: 100;
   display: inline-block;
 }
 
-.btn-1 svg {
-  height: 45px;
-  left: 0;
+.member-name-new::before,
+.member-name-new::after {
+  /* content: ""; */
   position: absolute;
-  top: 0;
-  width: 100%;
+  top: 100%;
+  width: 80px;
+  height: 2px;
+  background: #a770ef; /* Theme color */
 }
 
-.btn-1 rect {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2;
-  stroke-dasharray: 422, 0;
-  transition: all 0.35s linear;
+.member-name-new::before {
+  left: -100px;
 }
 
-.btn-1:hover {
-  background: rgba(225, 51, 45, 0);
-  font-weight: 900;
+.member-name-new::after {
+  right: -100px;
+}
+
+.member-role-new {
+  color: #ffffff; /* White text for contrast */
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 0;
+  margin-top: 10px;
+  position: relative;
+}
+
+.project-content-new {
+  color: #e0dfdf; /* Light gray text for readability */
+  font-size: 1.1rem;
+  margin-top: 20px;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* --- Horizontal Dots (Desktop) --- */
+.dots-new {
+  display: flex;
+  flex-direction: row; /* Horizontal dots */
+  gap: 15px; 
+  margin-top: 30px;
+}
+
+.dot-new {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(167, 112, 239, 0.4); /* Theme color with opacity */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot-new.active {
+  background: #a770ef; /* Theme color */
+  transform: scale(1.2);
+}
+
+/* --- Text Navigation Buttons --- */
+.nav-text-controls {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.nav-text-button {
+  padding: 10px 25px;
+  border: 2px solid #a770ef; /* Theme color border */
+  border-radius: 50px;
+  background-color: transparent;
+  color: #a770ef; /* Theme color text */
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.btn-1:hover rect {
-  stroke-width: 5;
-  stroke-dasharray: 15, 310;
-  stroke-dashoffset: 48;
-  transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+.nav-text-button:hover {
+  background-color: #a770ef; /* Theme color solid background on hover */
+  color: #1a1a1a; /* Dark text on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(167, 112, 239, 0.4);
 }
 
+/* --- Navigation Arrows (Hidden on desktop, used for mobile inside carousel) --- */
+.nav-controls-new {
+  display: none; 
+}
+
+.nav-arrow {
+  position: relative;
+  background: transparent;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-arrow img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: invert(100%) hue-rotate(250deg); /* Adjust arrow image color for dark theme */
+  transition: all 0.3s ease;
+}
+
+
+/* --- Floating Button (Super) --- */
+#super-btn {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 1000;
+  display: inline-block;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  width: 56px;
+  height: 56px;
+  background: #333; /* Darker button background */
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+#super-btn:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28);
+  transform: scale(1.07);
+}
+#super-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+/* ============================================== */
+/* RESPONSIVENESS (Mobile/Tablet)                 */
+/* ============================================== */
+@media (max-width: 768px) {
+  .main-container-carousel {
+    height: auto;
+    padding-top: 20px;
+  }
+  .projectheading {
+    margin-bottom: 30px;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .carousel-section-new {
+    flex: none;
+    width: 100%;
+  }
+
+  .controls-section-new {
+    flex: none;
+    width: 100%;
+    padding: 0 20px;
+    gap: 20px;
+    align-items: center; /* Center controls for mobile */
+    text-align: center;
+  }
+
+  /* Center the new text controls */
+  .nav-text-controls {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .nav-text-button {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+
+  .carousel-container-new {
+    height: 60vh;
+    max-width: 350px;
+    margin-top: 0; /* Remove desktop nudge on mobile */
+  }
+
+  /* Show carousel arrows for mobile navigation */
+  .carousel-container-new > .nav-arrow {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    margin: 0;
+  }
+
+  .carousel-container-new > .nav-arrow.up {
+    top: 0px;
+  }
+
+  .carousel-container-new > .nav-arrow.down {
+    bottom: 0px;
+  }
+
+  .carousel-container-new .nav-arrow.up img {
+    transform: rotate(-90deg);
+    width: 50px;
+    height: 50px;
+  }
+
+  .carousel-container-new .nav-arrow.down img {
+    transform: rotate(90deg);
+    width: 50px;
+    height: 50px;
+  }
+
+  .card-new {
+    width: 320px;
+    height: 180px;
+  }
+
+  .carousel-track-new {
+    width: 350px;
+  }
+
+  /* Adjust mobile card positions */
+  .card-new.up-2 {
+    transform: translateY(-160px) scale(0.8) translateZ(-300px);
+  }
+
+  .card-new.up-1 {
+    transform: translateY(-80px) scale(0.9) translateZ(-100px);
+  }
+
+  .card-new.down-1 {
+    transform: translateY(80px) scale(0.9) translateZ(-100px);
+  }
+
+  .card-new.down-2 {
+    transform: translateY(160px) scale(0.8) translateZ(-300px);
+  }
+
+  /* Adjust mobile text styles */
+  .member-info-new {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .member-name-new {
+    font-size: 1.8rem;
+  }
+
+  .member-role-new {
+    font-size: 1rem;
+  }
+
+  .member-name-new::before,
+  .member-name-new::after {
+    width: 40px;
+  }
+
+  .member-name-new::before {
+    left: -60px;
+  }
+
+  .member-name-new::after {
+    right: -60px;
+  }
+
+  .project-content-new {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .dots-new {
+    flex-direction: row; /* Horizontal dots on mobile */
+    margin-bottom: 40px;
+  }
+}
+
+
+.project-header-unique {
+    text-align: center;
+    margin-bottom: 1px;
+}
+
+.project-header-unique h2 {
+    font: 300 60px 'Oswald', sans-serif;
+    font-weight: 500;
+    background: linear-gradient(45deg, #a770ef, #cf71af, #ff6e7f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.project-accent-unique {
+    color: #a770ef;
+    background: none;
+    -webkit-text-fill-color: initial;
+}

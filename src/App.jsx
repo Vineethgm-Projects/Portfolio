@@ -6,6 +6,7 @@ import DownloadImageButton from "./cvdownload";
 import React, { useEffect, useState, useRef } from "react"; // Added useRef
 import { FaChevronDown, FaGithub, FaLinkedinIn, FaEnvelope, FaFileDownload, FaDownload } from "react-icons/fa";
 import "./App.css";
+import GridBackground from "./GridBackground";
 import img from "./assets/file.png";
 import img2 from "./assets/cv3.png";
 
@@ -182,14 +183,15 @@ export default function App() {
 
   return (
     <div className="app">
-      <header id="myHeader" className="header">
-        {/* ... Nav Code ... */}
-        <nav aria-label="Main Navigation">
-          <ul>
-            <li><a href="#about" onClick={(e) => handleNavClick(e, "#about")} className={activeSection === "#about" ? "active" : ""}>About</a></li>
+    <GridBackground/>
+    <header id="myHeader" className="header">
+    {/* ... Nav Code ... */}
+    <nav aria-label="Main Navigation">
+    <ul>
+    <li><a href="#about" onClick={(e) => handleNavClick(e, "#about")} className={activeSection === "#about" ? "active" : ""}>About</a></li>
             <li><a href="#projectsmain" onClick={(e) => handleNavClick(e, "#projectsmain")} className={activeSection === "#projectsmain" ? "active" : ""}>Projects</a></li>
-            <li><a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className={activeSection === "#contact" ? "active" : ""}>Contact</a></li>
             <li><a href="#stack" onClick={(e) => handleNavClick(e, "#stack")} className={activeSection === "#stack" ? "active" : ""}>Stack</a></li>
+            <li><a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className={activeSection === "#contact" ? "active" : ""}>Contact</a></li>
           </ul>
           <button id="openmenu" onClick={() => setMenuOpen((prev) => !prev)}>
             <span></span>
@@ -200,19 +202,19 @@ export default function App() {
       
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <div id="page" className={`page ${menuOpen ? "menuopen" : ""}`}>
-            
-            {/* About Section - UPDATED CONTENT */}
-            <section id="about" className="aboutme">
-
+        <div id="page" className={`page ${menuOpen ? "menuopen" : ""}`}>
+        
+        {/* About Section - UPDATED CONTENT */}
+        <section id="about" className="aboutme">
+        
               <div 
                 className="opaque-bg animated fadeInDown"
                 data-speed="1.05"
                 data-lag="0.1"
               >
-                <div className="about-content-wrapper">
-
-
+              <div className="about-content-wrapper">
+              
+              
                   
                   {/* Avatar/Placeholder - REMOVED */}
 
@@ -222,10 +224,16 @@ export default function App() {
                   </h1>
 
                   {/* Dynamic Role Text - NEW STRUCTURE */}
-                  <p className="hero-role-container"> <span className="hero-role-text-gsap" ref={roleRef} aria-live="polite">
-                        {splitText(currentRole)}
-                    </span>
-                  </p>  
+                  <p className="hero-role-container" data-speed="1.1" ref={roleRef}>{splitText(currentRole)}</p>
+                  <p className="about-description">
+  I'm a passionate Full Stack Developer who loves building efficient, scalable, 
+  and visually engaging web applications. With strong skills in both front-end 
+  technologies like React and Next.js, and back-end tools such as Java and MySQL, 
+  I enjoy bringing ideas to life from concept to deployment. 
+  Im always eager to learn, improve performance, and craft seamless user experiences 
+  that combine clean design with powerful functionality.
+</p>
+
                   {/* Social Media Links */}
                   <div className="social-links">
                     <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
@@ -267,9 +275,23 @@ export default function App() {
             </section>
 
             {/* ... Other Sections ... */}
-            <section id="projectsmain" data-speed="0.9"><HorizontalScroll /></section>
-            <section id="stack" data-speed="1.1"><MyStack /></section>
-            <section id="contact" data-speed="0.85"><Contact /></section>
+            <div id="smooth-wrapper">
+      <div id="smooth-content">
+      <section id="projectsmain" data-speed="0.9"><HorizontalScroll /></section>
+      </div>
+    </div>
+
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <section id="stack" data-speed="1.1"><MyStack /></section>
+      </div>
+    </div>
+
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <section id="contact" data-speed="0.85"><Contact /></section>
+      </div>
+    </div>
 
           </div> 
         </div> 

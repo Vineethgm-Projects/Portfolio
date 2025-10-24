@@ -22,27 +22,26 @@
 /* === CTA BUTTON STYLES (Front Face) === */
 /* ------------------------------------------- */
 .contact-button-container {
-  padding: 0;
-  width: 100%; 
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: center;
+  order: 2;
 }
 
-/* Base button style - adjusted purple to dark blue/purple */
 .cta {
   position: relative;
   margin: 0;
   padding: 11.5px 18px;
   transition: all 0.2s ease;
-  border: 3px solid #3d2a70; 
-  background: #3d2a70; 
+  border: 3px solid #3d2a70;
+  background: #3d2a70;
   border-radius: 50px;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Animated white overlay/dot */
 .cta:before {
   content: "";
   position: absolute;
@@ -57,7 +56,6 @@
   z-index: 0;
 }
 
-/* Text style */
 .cta span {
   position: relative;
   font-size: 18px;
@@ -67,7 +65,6 @@
   z-index: 1;
 }
 
-/* SVG Arrow style */
 .cta svg {
   position: relative;
   top: 1px;
@@ -82,29 +79,23 @@
   z-index: 1;
 }
 
-/* Hover effect: fill the button with a dark color */
 .cta:hover:before {
   width: 100%;
-  background: #1c1c1c; 
+  background: #1c1c1c;
 }
 
-/* Hover effect: slide arrow */
 .cta:hover svg {
   transform: translateX(0);
   transition: all 0.5s ease;
 }
 
-/* Active (click) effect */
 .cta:active {
   transform: scale(0.95);
 }
 
-
 /* ------------------------------------------- */
 /* === 3D FLIP CARD STRUCTURE & ANIMATION === */
 /* ------------------------------------------- */
-
-/* The Scene container remains the same, providing the 3D perspective */
 .contact-scene {
   width: 100%;
   max-width: 600px;
@@ -114,9 +105,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-/* The element that holds both faces and handles the rotation */
 .contact-flip-container {
   position: relative;
   width: 100%;
@@ -124,14 +115,13 @@
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  z-index: 2;
 }
 
-/* The class applied by React to trigger the flip */
 .contact-flip-container.flipped {
   transform: rotateY(180deg);
 }
 
-/* The base face styles */
 .contact-card-face {
   position: absolute;
   width: 100%;
@@ -142,19 +132,18 @@
   box-sizing: border-box;
 }
 
-/* The shared card appearance is applied ONLY to the back face via .contact-card-back */
 .contact-card-back {
   background: radial-gradient(circle at top left, #1c1c1c, #1a1a1a);
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.5),
     0 0 25px rgba(100, 180, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transform: rotateY(180deg);
   display: block;
   padding-top: 20px;
+  z-index: 3;
 }
 
-/* Front Face Styling */
 .contact-card-front {
   background: transparent;
   box-shadow: none;
@@ -163,13 +152,68 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  z-index: 3;
 }
 
+/* ------------------------------------------- */
+/* === FRONT FACE LAYOUT === */
+/* ------------------------------------------- */
+.contact-front-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.contact-social-media-list.corner-icon-tl,
+.contact-social-media-list.corner-icon-tr,
+.contact-social-media-list.corner-icon-bl,
+.contact-social-media-list.corner-icon-br {
+  font-size: 22px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.contact-social-media-list.corner-icon-tl li,
+.contact-social-media-list.corner-icon-tr li,
+.contact-social-media-list.corner-icon-bl li,
+.contact-social-media-list.corner-icon-br li {
+  height: 50px;
+  width: 50px;
+  margin: 0;
+}
+
+/* Corner positioning */
+.corner-icon-tl {
+  order: 1;
+  justify-content: flex-start;
+}
+
+.corner-icon-tr {
+  order: 1;
+  justify-content: flex-end;
+}
+
+.corner-icon-bl {
+  order: 3;
+  justify-content: flex-start;
+}
+
+.corner-icon-br {
+  order: 3;
+  justify-content: flex-end;
+}
 
 /* ------------------------------------------- */
-/* === Form and Icon Styles === */
+/* === FORM & INPUT STYLES === */
 /* ------------------------------------------- */
-
 .contact-wrapper {
   display: block;
   padding: 0;
@@ -212,73 +256,59 @@
   outline: none;
 }
 
-
 /* ------------------------------------------- */
-/* === NEW SEND BUTTON STYLES === */
+/* === SEND BUTTON === */
 /* ------------------------------------------- */
-
 .contact-send-button {
-  /* Base Style */
   background-color: #ffffff;
-  color: #000000; /* Text color is now black */
-  border-radius: 9999px; /* Replaces 10em for max roundness */
+  color: #000000;
+  border-radius: 9999px;
   font-size: 17px;
   font-weight: 600;
-  padding: 1em 2em; /* Set padding directly on the button */
+  padding: 1em 2em;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  border: 2px solid #000000; /* Made border 2px to match shadow thickness */
+  border: 2px solid #000000;
   box-shadow: 0 0 0 0 #000000;
-  width: auto; /* Allow button to fit content based on padding */
+  width: auto;
   max-width: 100%;
   height: auto;
-  align-self: center; /* Center the button in the form's flex column */
-  display: flex; /* Flex container for content */
+  align-self: center;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Hover Style */
 .contact-send-button:hover {
   transform: translateY(-4px) translateX(-2px);
   box-shadow: 4px 6px 0 0 #000000;
 }
 
-/* Active Style */
 .contact-send-button:active {
   transform: translateY(2px) translateX(1px);
   box-shadow: 0 0 0 0 #000000;
 }
 
-/* Inner Container for Icon/Text (Simplified) */
 .contact-alt-send-button {
-  /* Removed height/transform logic */
   width: auto;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #000000; /* Ensure icon color is black */
-  transition: none; /* Remove previous transition */
+  color: #000000;
+  transition: none;
 }
 
-/* Text inside the button */
 .contact-send-text {
-  font: 700 17px 'Montserrat', sans-serif; /* Adjusted to Montserrat and 17px */
-  letter-spacing: 0.05em; /* Adjusted to match CTA button */
+  font: 700 17px 'Montserrat', sans-serif;
+  letter-spacing: 0.05em;
   margin-left: 8px;
   text-transform: uppercase;
-  color: #000000; /* Ensure text is black */
+  color: #000000;
 }
-
-/* Remove old hover logic */
-.contact-send-button:hover .contact-alt-send-button {
-  transform: none;
-}
-
 
 /* ------------------------------------------- */
-/* === Social Media Icons === */
+/* === SOCIAL ICONS (SHARED) === */
 /* ------------------------------------------- */
 .contact-social-media-container {
   max-width: 100%;
@@ -331,7 +361,7 @@
 }
 
 .contact-social-media-list li:hover {
-  background-color: #007bff;
+  transform: scale(1.3);
 }
 
 .contact-social-media-list li:hover:after {
@@ -340,18 +370,31 @@
   transition-timing-function: cubic-bezier(0.37, 0.74, 0.15, 1.65);
 }
 
-.contact-social-media-list li:hover a {
-  color: #fff;
-  transform: scale(1.btn-1);
+/* ------------------------------------------- */
+/* === SVG Animated Curved Lines === */
+/* ------------------------------------------- */
+.contact-curved-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* === Responsive === */
+/* ------------------------------------------- */
+/* === RESPONSIVE === */
+/* ------------------------------------------- */
 @media screen and (max-width: 850px) {
   .contact-scene {
     max-width: 90%;
   }
   .contact-card-face {
     padding: 30px 20px;
+  }
+  .contact-front-content-wrapper {
+    padding: 10px 0;
   }
 }
 
@@ -373,4 +416,28 @@
     height: 45px;
     line-height: 45px;
   }
+}
+
+/* ------------------------------------------- */
+/* === FIX: MAKE ICONS CLICKABLE === */
+/* ------------------------------------------- */
+.contact-curved-lines {
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contact-flip-container {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-social-media-list li a {
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.contact-card-front,
+.contact-card-back {
+  z-index: 3;
 }
