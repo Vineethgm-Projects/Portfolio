@@ -475,3 +475,16 @@
     background: none;
     -webkit-text-fill-color: initial;
 }
+
+.floating-tooltip {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 1px 3px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+}
+

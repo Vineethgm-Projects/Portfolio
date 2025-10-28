@@ -32,29 +32,18 @@ body {
 /* --- GLOBAL STYLES & BACKGROUND --- */
 /* ========================================================= */
 body {
- width: 100%;
- line-height: 1.6;
- color: #fff;
- 
- /* DOT-GRID BACKGROUND */
- --dot-bg: black;
- --dot-color: white;
- --dot-size: 1px;
- --dot-space: 22px;
- background:
-  linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-  linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-  var(--dot-color);
- 
- font-size: 18px;
- font-weight: 400;
- font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue",
- sans-serif;
- -webkit-font-smoothing: antialiased;
- -moz-osx-font-smoothing: grayscale;
-
- background-attachment: fixed;
+  width: 100%;
+  line-height: 1.6;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: black; /* Keep a plain dark background behind GridBackground */
+  background-attachment: fixed;
 }
+
 
 /* ========================================================= */
 /* --- HEADER AND NAVIGATION STYLES (Color Adjusted) --- */

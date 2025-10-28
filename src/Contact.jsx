@@ -10,10 +10,9 @@ import {
 import './Contact.css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import emailjs from 'emailjs-com';
 
 gsap.registerPlugin(ScrollTrigger);
-
-
 
 const Contact = () => {
     const [isFlipped, setIsFlipped] = useState(false);
@@ -21,30 +20,40 @@ const Contact = () => {
     
     const handleFlip = () => setIsFlipped(true);
     
+    // ✅ Updated handleSubmit using EmailJS
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted!');
-        e.target.elements.contactName.value = '';
-        e.target.elements.contactEmail.value = '';
-        e.target.elements.contactMessage.value = '';
-        alert('Thank you for your message!');
+
+        emailjs.sendForm(
+            'service_yxhordj',      // replace with your EmailJS service ID
+            'template_i24pxcc',     // replace with your EmailJS template ID
+            e.target,               // the form element
+            'MfmMtLPYd2TzZSKgi'       // replace with your EmailJS public key
+        ).then(
+            (result) => {
+                console.log(result.text);
+                alert('✅ Message sent successfully!');
+            },
+            (error) => {
+                console.error(error.text);
+                alert('❌ Failed to send message. Please try again later.');
+            }
+        );
+
+        e.target.reset(); // clear the form fields
     };
 
     const flipContainerClass = `contact-flip-container ${isFlipped ? 'flipped' : ''}`;
 
     const SocialIconItem = ({ Icon, link }) => (
-    <li>
-        <a href={link} target="_blank" className="contact-icon" rel="noopener noreferrer">
-            <Icon aria-hidden="true" />
-        </a>
-    </li>
-);
+        <li>
+            <a href={link} target="_blank" className="contact-icon" rel="noopener noreferrer">
+                <Icon aria-hidden="true" />
+            </a>
+        </li>
+    );
 
-    
-    // Dynamically calculate SVG paths
     const [paths, setPaths] = useState([]);
-    const sectionRef = useRef(null);
-const cardRef = useRef(null);
     
     useEffect(() => {
         const updatePaths = () => {
@@ -71,13 +80,11 @@ const cardRef = useRef(null);
                 const endX = buttonRect.left + buttonRect.width / 2 - sceneRect.left;
                 const endY = buttonRect.top + buttonRect.height / 2 - sceneRect.top;
                 
-                // Control points for a smooth curve
                 const ctrlX1 = startX;
                 const ctrlY1 = startY + (endY - startY) / 2;
                 const ctrlX2 = endX;
                 const ctrlY2 = endY - (endY - startY) / 2;
 
-                
                 return `M${startX},${startY} C${ctrlX1},${ctrlY1} ${ctrlX2},${ctrlY2} ${endX},${endY}`;
             });
 
@@ -88,8 +95,6 @@ const cardRef = useRef(null);
         window.addEventListener('resize', updatePaths);
         return () => window.removeEventListener('resize', updatePaths);
     }, [isFlipped]);
-
-    
 
     return (
         <section id="contact-section" className="contact-section-root">
@@ -104,54 +109,52 @@ const cardRef = useRef(null);
             </div>
 
             <div className="contact-scene">
-                {/* Animated SVG Curved Lines */}
-                
                 <div className={flipContainerClass}>
-                <svg className="contact-curved-lines" ref={svgRef}>
-    <defs>
-        <linearGradient id="glowGradient" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#8A2BE2">
-                <animate attributeName="stop-color" values="#8A2BE2; #00FFFF; #FF00FF; #8A2BE2" dur="4s" repeatCount="indefinite" />
-            </stop>
-            <stop offset="100%" stopColor="#00FFFF">
-                <animate attributeName="stop-color" values="#00FFFF; #FF00FF; #8A2BE2; #00FFFF" dur="4s" repeatCount="indefinite" />
-            </stop>
-        </linearGradient>
+                    <svg className="contact-curved-lines" ref={svgRef}>
+                        <defs>
+                            <linearGradient id="glowGradient" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stopColor="#8A2BE2">
+                                    <animate attributeName="stop-color" values="#8A2BE2; #00FFFF; #FF00FF; #8A2BE2" dur="4s" repeatCount="indefinite" />
+                                </stop>
+                                <stop offset="100%" stopColor="#00FFFF">
+                                    <animate attributeName="stop-color" values="#00FFFF; #FF00FF; #8A2BE2; #00FFFF" dur="4s" repeatCount="indefinite" />
+                                </stop>
+                            </linearGradient>
 
-        <filter id="glowFilter">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-            </feMerge>
-        </filter>
-    </defs>
+                            <filter id="glowFilter">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
 
-    {paths.map((path, idx) => (
-        <path
-            key={idx}
-            d={path}
-            stroke="url(#glowGradient)"
-            strokeWidth="2.5"
-            fill="none"
-            filter="url(#glowFilter)"
-            strokeDasharray="1000"
-            strokeDashoffset="1000"
-        >
-            <animate
-                attributeName="stroke-dashoffset"
-                from="1000"
-                to="0"
-                dur="1.2s"
-                begin={`${idx * 0.3}s`}
-                fill="freeze"
-            />
-        </path>
-    ))}
-</svg>
+                        {paths.map((path, idx) => (
+                            <path
+                                key={idx}
+                                d={path}
+                                stroke="url(#glowGradient)"
+                                strokeWidth="2.5"
+                                fill="none"
+                                filter="url(#glowFilter)"
+                                strokeDasharray="1000"
+                                strokeDashoffset="1000"
+                            >
+                                <animate
+                                    attributeName="stroke-dashoffset"
+                                    from="1000"
+                                    to="0"
+                                    dur="1.2s"
+                                    begin={`${idx * 0.3}s`}
+                                    fill="freeze"
+                                />
+                            </path>
+                        ))}
+                    </svg>
 
-                {/* FRONT FACE */}
-                <div className="contact-card contact-card-face contact-card-front">
+                    {/* FRONT FACE */}
+                    <div className="contact-card contact-card-face contact-card-front">
                         <div className="contact-front-content-wrapper">
                             <ul className="contact-social-media-list corner-icon-tl">
                                 <SocialIconItem Icon={FaGithub} link="https://github.com/Vineethgm-Projects"/>
@@ -172,7 +175,7 @@ const cardRef = useRef(null);
                                 </button>
                             </div>
                             <ul className="contact-social-media-list corner-icon-bl">
-                                <SocialIconItem Icon={FaTwitter} />
+                                <SocialIconItem Icon={FaTwitter} link="https://twitter.com/"/>
                             </ul>
                             <ul className="contact-social-media-list corner-icon-br">
                                 <SocialIconItem Icon={FaEnvelope} link="mailto:vineeth.gmhub@gmail.com"/>
@@ -196,7 +199,7 @@ const cardRef = useRef(null);
                                             className="contact-form-control"
                                             id="contact-name"
                                             placeholder="NAME"
-                                            name="contactName"
+                                            name="from_name" // must match EmailJS template
                                             required
                                         />
                                     </div>
@@ -208,7 +211,7 @@ const cardRef = useRef(null);
                                             className="contact-form-control"
                                             id="contact-email"
                                             placeholder="EMAIL"
-                                            name="contactEmail"
+                                            name="from_email" // must match EmailJS template
                                             required
                                         />
                                     </div>
@@ -217,7 +220,7 @@ const cardRef = useRef(null);
                                     className="contact-form-control contact-textarea"
                                     rows="10"
                                     placeholder="MESSAGE"
-                                    name="contactMessage"
+                                    name="message" // must match EmailJS template
                                     required
                                 ></textarea>
                                 <button

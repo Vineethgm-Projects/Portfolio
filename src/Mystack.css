@@ -88,7 +88,23 @@
     transition: all 0.3s ease;
 }
 
-.techstack-active-unique,
+.techstack-categories-unique button:hover {
+    transform: scale(1.05) translateY(-2px);
+    background: #a770ef;
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(167, 112, 239, 0.2);
+}
+
+.techstack-categories-unique button.techstack-active-unique {
+    background: #a770ef;
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(167, 112, 239, 0.5);
+}
+
+
+/* .techstack-active-unique,
 .techstack-categories-unique button:hover {
     background: #a770ef;
     border-color: transparent;
@@ -96,6 +112,15 @@
     transform: scale(1.05) translateY(-2px);
     box-shadow: 0 5px 15px rgba(167, 112, 239, 0.2);
 }
+
+.techstack-categories-unique button.techstack-active-unique {
+    background: #a770ef;
+    border-color: transparent;
+    color: #fff;
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 5px 15px rgba(167, 112, 239, 0.2);
+} */
+
 
 .techstack-grid-unique {
     display: flex; /* Main change: Use flexbox for the grid container */
