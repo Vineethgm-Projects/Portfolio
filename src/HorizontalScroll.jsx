@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import "./HorizontalScroll.css";
 import exploreEpicImg from "./assets/exploreepic2.png";
 import filmRave from "./assets/filmrave.png";
+import ulearnx from "./assets/1.jpg";
 
 /* ================= Tooltip Component ================= */
 const Tooltip = ({ visible, x, y, text }) => {
@@ -23,7 +24,7 @@ const Tooltip = ({ visible, x, y, text }) => {
 /* ================= Image Assets ================= */
 const cardImages = {
   exploreEpic: exploreEpicImg,
-  ulearnx: "https://placehold.co/800x600/4D716A/E0E0E0?text=Ulearnx",
+  ulearnx: ulearnx,
   filmRave: filmRave,
 };
 
